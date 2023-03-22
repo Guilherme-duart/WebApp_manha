@@ -28,6 +28,11 @@ namespace WebApp_manha.Controllers
             return View();
         }
 
+        public IActionResult DropDow()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
