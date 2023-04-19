@@ -32,11 +32,24 @@ namespace WebApp_manha.Controllers
         [HttpPost]
         public IActionResult SalvarDados(ClienteViewModel model)
         {
-            lista.Add(model);
-            return RedirectToAction("Lista");
+            if(model.Id > 0)
+            {
+                int cliente = lista.FindIndex(a => a.Id == model.Id);
+                lista[cliente] = model;
+            }
+            else
+            {
+                lista.Add(model);
+                Random random = new Random();
+                model.Id = random.Next(1, 9999);
+            }
+{          
+           
         }
+            return RedirectToAction("Lista");
+         }
 
-        [HttpPost]
+            [HttpPost]
         public IActionResult Cadastro(string Nome, string Telefone)
         {
             if (string.IsNullOrEmpty(Nome))
@@ -53,6 +66,15 @@ namespace WebApp_manha.Controllers
 
         public IActionResult Editar(int id)
         {
+            ClienteViewModel cliente = lista.Find(a => a.Id == id);
+            if (cliente != null)
+            {
+                return View(cliente);
+            }
+            else
+            {
+                return RedirectToAction("Lista");
+            }
             return View();
         }
 
