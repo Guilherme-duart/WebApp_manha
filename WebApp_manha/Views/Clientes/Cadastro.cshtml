@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@model WebApp_manha.Models.ClienteViewModel
+
+<div class="row">
     <div class="col-4">
     </div>
 
@@ -18,7 +20,7 @@
             </div>
 
             <div class="card-body">
-                <form action="/Clientes/Cadastro" method="post">
+                <form action="/Clientes/SalvarDados" method="post">
                     <label>Nome</label>
                     <input type="text" name="Nome" class="form-control" />
                     <br />
@@ -27,6 +29,11 @@
                     <input type="text" name="Telefone" class="form-control" />
 
                     <br />
+
+                    <label>Codigo</label>
+                    <input type="number" name="Id" class="form-control" />
+                    <br />
+
 
                     <button type="submit" class="btn btn-dark">
                         Salvar Cliente
