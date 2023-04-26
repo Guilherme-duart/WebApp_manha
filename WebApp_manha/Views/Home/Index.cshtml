@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<WebApp_manha.Entidades.Produtos>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,3 +10,8 @@
 </div>
 
 <h1>Salve</h1>
+
+@foreach (var produto in Model)
+{
+    <p>@produto.DESCRICAO - R$ @produto.VALOR</p>
+}
