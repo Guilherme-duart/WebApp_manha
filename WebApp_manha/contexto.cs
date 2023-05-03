@@ -11,5 +11,8 @@ namespace WebApp_manha
         }
 
         public DbSet<Produtos> Produtos { get; set; }
+        public DbSet<Categorias> Categorias { get; set; }
+        public DbSet<PermissaoEntidade> PERMISSAO { get; set; }
     }
+
 }
