@@ -8,5 +8,9 @@
         public decimal VALOR { get; set;}
 
         public bool ATIVO { get; set;}
+
+        public int CATEGORIAId { get; set;}
+
+        public Categorias Categorias { get; set;}
     }
 }

@@ -1,9 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp_manha.Entidades;
+using WebApp_manha.Models;
 
 namespace WebApp_manha.Controllers
 {
     public class ProdutosController : Controller
     {
+
+        private Contexto db;
+
+        public ProdutosController(Contexto contexto)
+        {
+            db = contexto;
+        }
         public IActionResult Lista()
         {
             return View();
@@ -11,12 +20,18 @@ namespace WebApp_manha.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            NovoProdutoModelView model = new NovoProdutoModelView();
+            model.ListaCategorias = db.Categorias.ToList();
+
+            return View(model);
         }
 
-        public IActionResult SalvarDados()
+        [HttpPost]
+        public IActionResult SalvarDados(Produtos dados)
         {
-            return View();
+          db.Produtos.Add(dados);
+            db.SaveChanges();
+            return RedirectToAction("Lista");
         }
     }
 }
