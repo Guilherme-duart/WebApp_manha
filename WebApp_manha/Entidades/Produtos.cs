@@ -3,14 +3,14 @@
     public class Produtos
     {
         public int Id { get; set; }
-        public string DESCRICAO { get; set;}
+        public string Descricao { get; set;}
 
-        public decimal VALOR { get; set;}
+        public decimal Valor { get; set;}
 
-        public bool ATIVO { get; set;}
+        public bool Ativo { get; set;}
 
-        public int CATEGORIAId { get; set;}
+        public int CategoriaId { get; set;}
 
-        public Categorias Categorias { get; set;}
+        public Categorias Categoria { get; set;}
     }
 }
