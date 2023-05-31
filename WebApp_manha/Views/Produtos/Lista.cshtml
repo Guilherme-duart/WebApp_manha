@@ -21,6 +21,10 @@
                     <th>
                         Categoria
                     </th>
+
+                    <th>
+                        Imagem
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +35,8 @@
                         <td>@produto.Descricao</td>
                         <td>@produto.Valor</td>
                         <td>@produto.Categoria.Nome</td>
+                        <td> img src="/upload/@produto.CaminhoImagem"< /td>
+
                     </tr>
                 }
             </tbody>

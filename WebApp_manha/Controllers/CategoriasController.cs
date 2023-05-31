@@ -30,9 +30,16 @@ namespace WebApp_manha.Controllers
             return View();
         }
 
-        public IActionResult Lista( )
+        public IActionResult Lista( string busca)
         {
-            return View(db.Categorias.ToList());
+            if(string.isNullorEmppty(busca))
+            {
+              return View(db.Categorias.ToList());
+            }else{
+                return View(contexto.categorias.where(a => a.Nome.contains(busca) ).ToList() );
+            }
+            
+           
         }
 
         public IActionResult Editar(int id)

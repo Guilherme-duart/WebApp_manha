@@ -9,6 +9,8 @@
 
         public bool Ativo { get; set;}
 
+        public string CaminhoImagem {get; set;}
+
         public int CategoriaId { get; set;}
 
         public Categorias Categoria { get; set;}

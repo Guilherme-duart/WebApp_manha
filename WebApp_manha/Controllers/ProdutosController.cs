@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp_manha.Entidades;
 using WebApp_manha.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WebApp_manha.Controllers
 {
@@ -9,10 +10,12 @@ namespace WebApp_manha.Controllers
     {
 
         private Contexto db;
+        private IwebHostEnvironment webHostEnvironment;
 
-        public ProdutosController(Contexto contexto)
+        public ProdutosController(Contexto contexto ,IwebHostEnvironment _web )
         {
             db = contexto;
+            webHostEnvironment = _web;
         }
         public IActionResult Lista()
         {
@@ -30,8 +33,27 @@ namespace WebApp_manha.Controllers
         }
 
         [HttpPost]
-        public IActionResult SalvarDados(Produtos dados)
+        public IActionResult SalvarDados(Produtos dados , IformFile imagem)
         {
+            if(imagem.Lenght > 0)
+            {
+             string caminho = webHostEnvironment.WebRootPath + "\\upload//";
+
+              if(Directory.Exists(caminho))
+            {
+                Directory.CreateDiretory(caminho);
+
+            }
+            using(var stream = System.IO.file.Create(caminho+imagem.FileName))
+            {
+                 imagem.CopyToAsync(stream);
+            }
+            dados.CaminhoImagem = imagem.FileName;
+
+            }
+           
+
+          using (var)
           db.Produtos.Add(dados);
             db.SaveChanges();
             return RedirectToAction("Lista");
